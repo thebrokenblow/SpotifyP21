@@ -20,7 +20,12 @@ public static class DataSeeder
                 new Genre { Title = "Country" },
                 new Genre { Title = "Blues" },
                 new Genre { Title = "Reggae" },
-                new Genre { Title = "Folk" }
+                new Genre { Title = "Folk" },
+                new Genre { Title = "Metal" },
+                new Genre { Title = "Punk" },
+                new Genre { Title = "R&B" },
+                new Genre { Title = "Latin" },
+                new Genre { Title = "World" }
             };
             context.Genres.AddRange(genres);
             context.SaveChanges();
@@ -39,7 +44,12 @@ public static class DataSeeder
                 new Group { Title = "Beethoven" },
                 new Group { Title = "Johnny Cash" },
                 new Group { Title = "B.B. King" },
-                new Group { Title = "Bob Marley" }
+                new Group { Title = "Bob Marley" },
+                new Group { Title = "Metallica" },
+                new Group { Title = "Green Day" },
+                new Group { Title = "Beyoncé" },
+                new Group { Title = "Shakira" },
+                new Group { Title = "Buena Vista Social Club" }
             };
             context.Groups.AddRange(groups);
             context.SaveChanges();
@@ -256,6 +266,117 @@ public static class DataSeeder
                         new Song { Title = "Turn Your Lights Down Low" },
                         new Song { Title = "Three Little Birds" },
                         new Song { Title = "One Love/People Get Ready" }
+                    }
+                },
+                new Album
+                {
+                    Title = "Master of Puppets",
+                    Photo = "master_of_puppets.jpg",
+                    Genres = context.Genres.Where(g => g.Title == "Metal").ToList(),
+                    Groups = context.Groups.Where(g => g.Title == "Metallica").ToList(),
+                    Songs = new List<Song>
+                    {
+                        new Song { Title = "Battery" },
+                        new Song { Title = "Master of Puppets" },
+                        new Song { Title = "The Thing That Should Not Be" },
+                        new Song { Title = "Welcome Home (Sanitarium)" },
+                        new Song { Title = "Disposable Heroes" },
+                        new Song { Title = "Leper Messiah" },
+                        new Song { Title = "Orion" },
+                        new Song { Title = "Damage, Inc." }
+                    }
+                },
+                new Album
+                {
+                    Title = "Dookie",
+                    Photo = "dookie.jpg",
+                    Genres = context.Genres.Where(g => g.Title == "Punk").ToList(),
+                    Groups = context.Groups.Where(g => g.Title == "Green Day").ToList(),
+                    Songs = new List<Song>
+                    {
+                        new Song { Title = "Burnout" },
+                        new Song { Title = "Having a Blast" },
+                        new Song { Title = "Chump" },
+                        new Song { Title = "Longview" },
+                        new Song { Title = "Welcome to Paradise" },
+                        new Song { Title = "Pulling Teeth" },
+                        new Song { Title = "Basket Case" },
+                        new Song { Title = "She" },
+                        new Song { Title = "Sassafras Roots" },
+                        new Song { Title = "When I Come Around" },
+                        new Song { Title = "Coming Clean" },
+                        new Song { Title = "Emenius Sleepus" },
+                        new Song { Title = "In the End" },
+                        new Song { Title = "F.O.D." }
+                    }
+                },
+                new Album
+                {
+                    Title = "Lemonade",
+                    Photo = "lemonade.jpg",
+                    Genres = context.Genres.Where(g => g.Title == "R&B").ToList(),
+                    Groups = context.Groups.Where(g => g.Title == "Beyoncé").ToList(),
+                    Songs = new List<Song>
+                    {
+                        new Song { Title = "Pray You Catch Me" },
+                        new Song { Title = "Hold Up" },
+                        new Song { Title = "Don't Hurt Yourself" },
+                        new Song { Title = "Sorry" },
+                        new Song { Title = "6 Inch" },
+                        new Song { Title = "Daddy Lessons" },
+                        new Song { Title = "Love Drought" },
+                        new Song { Title = "Sandcastles" },
+                        new Song { Title = "Forward" },
+                        new Song { Title = "Freedom" },
+                        new Song { Title = "All Night" },
+                        new Song { Title = "Formation" }
+                    }
+                },
+                new Album
+                {
+                    Title = "El Dorado",
+                    Photo = "el_dorado.jpg",
+                    Genres = context.Genres.Where(g => g.Title == "Latin").ToList(),
+                    Groups = context.Groups.Where(g => g.Title == "Shakira").ToList(),
+                    Songs = new List<Song>
+                    {
+                        new Song { Title = "Me Enamoré" },
+                        new Song { Title = "Nada" },
+                        new Song { Title = "Chantaje" },
+                        new Song { Title = "When a Woman" },
+                        new Song { Title = "Amarillo" },
+                        new Song { Title = "Perro Fiel" },
+                        new Song { Title = "Trap" },
+                        new Song { Title = "Comme Moi" },
+                        new Song { Title = "Coconut Tree" },
+                        new Song { Title = "La Bicicleta" },
+                        new Song { Title = "Deja Vu" },
+                        new Song { Title = "What We Said" },
+                        new Song { Title = "Toneladas" }
+                    }
+                },
+                new Album
+                {
+                    Title = "Buena Vista Social Club",
+                    Photo = "buena_vista_social_club.jpg",
+                    Genres = context.Genres.Where(g => g.Title == "World").ToList(),
+                    Groups = context.Groups.Where(g => g.Title == "Buena Vista Social Club").ToList(),
+                    Songs = new List<Song>
+                    {
+                        new Song { Title = "Chan Chan" },
+                        new Song { Title = "De Camino a La Vereda" },
+                        new Song { Title = "El Cuarto de Tula" },
+                        new Song { Title = "Pueblo Nuevo" },
+                        new Song { Title = "Dos Gardenias" },
+                        new Song { Title = "¿Y Tú Qué Has Hecho?" },
+                        new Song { Title = "Veinte Años" },
+                        new Song { Title = "El Carretero" },
+                        new Song { Title = "Candela" },
+                        new Song { Title = "Amor de Loca Juventud" },
+                        new Song { Title = "Orgullecida" },
+                        new Song { Title = "Murmullo" },
+                        new Song { Title = "Buena Vista Social Club" },
+                        new Song { Title = "La Bayamesa" }
                     }
                 }
             };
