@@ -20,11 +20,8 @@ public class GroupRepository(SpotifyContext spotifyContext) : IGroupRepository
              .ToListAsync();
 
 
-    [HttpGet("{id}")]
-    [ActionName(nameof(GetDetailByIdAsync))]
     public async Task<GroupDetailsDto> GetDetailByIdAsync(int id) =>
         await spotifyContext.Groups
-        .Include(group => group.Genres)
         .Include(group => group.Albums)
         .Select(
             group =>
@@ -32,26 +29,16 @@ public class GroupRepository(SpotifyContext spotifyContext) : IGroupRepository
                 {
                     Id = group.Id,
                     Title = group.Title,
-
                     Albums = group.Albums
                     .Select(album => new AlbumDto
                     {
                         Id = album.Id,
                         Title = album.Title,
                         Photo = album.Photo
-                    }).ToList(),
-                    Genres = group.Genres
-                    .Select(genre => new GenreDto
-                    {
-                        Id = genre.Id,
-                        Title = genre.Title
-                    }).ToList(),
+                    }).ToList()
                 })
         .SingleAsync(group => group.Id == id);
 
-
-    [HttpDelete("{id}")]
-    [ActionName(nameof(DeleteByIdAsync))]
     public async Task DeleteByIdAsync(int id)
     {
         var group = await spotifyContext.Groups.SingleAsync(group => group.Id == id);
@@ -60,9 +47,6 @@ public class GroupRepository(SpotifyContext spotifyContext) : IGroupRepository
         await spotifyContext.SaveChangesAsync();
     }
 
-
-    [HttpPut]
-    [ActionName(nameof(UpdateAsync))]
     public async Task UpdateAsync([FromBody] UpdateGroupDto updateClientDto)
     {
         var group = await spotifyContext.Groups

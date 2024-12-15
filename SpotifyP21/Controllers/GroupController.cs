@@ -23,17 +23,17 @@ public class GroupController(IGroupRepository groupRepository) : Controller
     [HttpDelete("{id}")]
     [ActionName(nameof(DeleteByIdAsync))]
     public async Task DeleteByIdAsync(int id) =>
-        groupRepository.DeleteByIdAsync(id);
+        await groupRepository.DeleteByIdAsync(id);
 
 
     [HttpPut]
     [ActionName(nameof(UpdateAsync))]
     public async Task UpdateAsync([FromBody] UpdateGroupDto updateClientDto) =>
-        groupRepository.UpdateAsync(updateClientDto);
+        await groupRepository.UpdateAsync(updateClientDto);
 
 
     [HttpPost]
     [ActionName(nameof(Create))]
     public async Task Create([FromBody] CreateGroupDto createGroupDto) =>
-        groupRepository.CreateAsync(createGroupDto);
+        await groupRepository.CreateAsync(createGroupDto);
 }

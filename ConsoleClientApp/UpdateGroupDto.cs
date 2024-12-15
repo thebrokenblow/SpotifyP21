@@ -1,4 +1,4 @@
-﻿namespace SpotifyP21.Dto;
+﻿namespace ConsoleClientApp;
 
 public class UpdateGroupDto
 {

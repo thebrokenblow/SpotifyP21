@@ -1,18 +1,48 @@
 ﻿using ConsoleClientApp;
+using System.Net.Http.Json;
 
-using var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:7009/Group");
-using var response = await new HttpClient().SendAsync(request);
-Console.WriteLine($"Status: {response.StatusCode}\n");
-string content = await response.Content.ReadAsStringAsync();
+var groupService = new GroupService(new());
 
-var groups = GroupDtoDeserializer.Deserialize(content);
-
-if (groups != null)
+foreach(var group in await groupService.GetAllAsync())
 {
-    foreach (var group in groups)
-    {
-        Console.WriteLine($"Id: {group.Id}, Title: {group.Title}");
-    }
+    Console.WriteLine(group);
 }
 
-Console.ReadKey();
+Console.WriteLine();
+
+await groupService.CreateAsync(new CreateGroupDto
+{ 
+    Title = "Bob Dylan"
+});
+
+foreach (var group in await groupService.GetAllAsync())
+{
+    Console.WriteLine(group);
+}
+
+Console.WriteLine();
+
+
+await groupService.UpdateAsync(new UpdateGroupDto
+{
+    Id = 9,
+    Title = "Michael Jackson"
+});
+
+foreach (var group in await groupService.GetAllAsync())
+{
+    Console.WriteLine(group);
+}
+
+Console.WriteLine();
+
+await groupService.DeleteAsync(9);
+
+foreach (var group in await groupService.GetAllAsync())
+{
+    Console.WriteLine(group);
+}
+
+Console.WriteLine();
+
+Console.ReadLine();
